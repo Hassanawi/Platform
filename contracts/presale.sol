@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 // import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+
 
 contract PresaleContract {
   
@@ -82,8 +82,6 @@ contract PresaleContract {
     function getPresalesByOwner() external view returns (address[] memory) {
         return tokenOwner[msg.sender];    
     }
-
-
 
     function addWhitelistUser(address _tokenAddress, address[] memory _whitelistedUsers ) internal {
         for (uint256 i = 0; i < _whitelistedUsers.length; i++) {
