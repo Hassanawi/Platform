@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import Abi from "../../../contracts/contractAbi.json"
-// import moment from "moment"
+import moment from "moment"
 
 // import img from '../../../assets/images/background/img-create-item.jpg';
 
@@ -124,12 +124,18 @@ const Create = () => {
     }
     const datelockFunc = (e) => {
 
-        const data = e.target.value; // Get the value of the input field
-        const timestamp = Date.parse(data) / 1000; // Convert the input date to a Unix timestamp
-        const myBigNumber = ethers.BigNumber.from(timestamp); // Create a BigNumber object from the timestamp
-        setDateLock(myBigNumber); // Set the StartTime state variable to the BigNumber object
-        console.log(myBigNumber.toString()); // Log the string representation of the BigNumber object to the console
+        const dateTimeValue = e.target.value;
+        console.log("Selected date and time:", dateTimeValue);
+        // parse the selected date and time string into a moment object using format 'YYYY-MM-DDTHH:mm'
+        const selectedDateTime = moment(dateTimeValue, "YYYY-MM-DDTHH:mm");
+        console.log("Selected date and time as moment object:", selectedDateTime);
+        // convert the moment object to a unix timestamp in seconds
+        const timestamp = selectedDateTime.unix();
+        console.log("Unix timestamp:", timestamp);
+        setDateLock(timestamp);
+
     }
+
     const WhitelistUsersFunc = (e) => {
 
         const data = e.target.value
@@ -138,18 +144,26 @@ const Create = () => {
     }
 
     const StartTimeFunc = (e) => {
-        const data = e.target.value; // Get the value of the input field
-        const timestamp = Date.parse(data) / 1000; // Convert the input date to a Unix timestamp
-        const myBigNumber = ethers.BigNumber.from(timestamp); // Create a BigNumber object from the timestamp
-        setStartTime(myBigNumber); // Set the StartTime state variable to the BigNumber object
-        console.log(myBigNumber.toString()); // Log the string representation of the BigNumber object to the console
+        const dateTimeValue = e.target.value;
+        console.log("Selected date and time:", dateTimeValue);
+        // parse the selected date and time string into a moment object using format 'YYYY-MM-DDTHH:mm'
+        const selectedDateTime = moment(dateTimeValue, "YYYY-MM-DDTHH:mm");
+        console.log("Selected date and time as moment object:", selectedDateTime);
+        // convert the moment object to a unix timestamp in seconds
+        const timestamp = selectedDateTime.unix();
+        console.log("Unix timestamp:", timestamp);
+        setStartTime(timestamp);
     }
     const EndTimeFunc = (e) => {
-        const data = e.target.value; // Get the value of the input field
-        const timestamp = Date.parse(data) / 1000; // Convert the input date to a Unix timestamp
-        const myBigNumber = ethers.BigNumber.from(timestamp); // Create a BigNumber object from the timestamp
-        setEndTime(myBigNumber); // Set the StartTime state variable to the BigNumber object
-        console.log(myBigNumber.toString());
+        const dateTimeValue = e.target.value;
+        console.log("Selected date and time:", dateTimeValue);
+        // parse the selected date and time string into a moment object using format 'YYYY-MM-DDTHH:mm'
+        const selectedDateTime = moment(dateTimeValue, "YYYY-MM-DDTHH:mm");
+        console.log("Selected date and time as moment object:", selectedDateTime);
+        // convert the moment object to a unix timestamp in seconds
+        const timestamp = selectedDateTime.unix();
+        console.log("Unix timestamp:", timestamp);
+        setEndTime(timestamp);
     }
     const TokenToSaleFunc = (e) => {
 
@@ -207,7 +221,7 @@ const Create = () => {
                                     <p className="desc">Liquidity % going to PancakeSwap and its unlock date</p>
                                     <div className="input-group">
                                         <input value={liquidity} onChange={liquidityFunc} name="number" type="number" placeholder="Liquidity % for PancakeSwap" required />
-                                        <input value={datelock} onChange={datelockFunc} name="date" type="date" placeholder="Unlock Date" required />
+                                        <input  onChange={datelockFunc} name="date" type="datetime-local" placeholder="Unlock Date" required />
                                     </div>
                                     <div className="input-group style-2 ">
                                         <div className="btn-check">
@@ -246,11 +260,11 @@ const Create = () => {
                                     <p className="desc"> .</p>
                                     <p className="desc">Start Time:</p>
                                     <div className="input-group">
-                                        <input value={StartTime} onChange={StartTimeFunc} type="date" required />
+                                        <input onChange={StartTimeFunc} type="datetime-local" required />
                                     </div>
                                     <p className="desc">End Time:</p>
                                     <div className="input-group">
-                                        <input value={EndTime} onChange={EndTimeFunc} type="date" required />
+                                        <input onChange={EndTimeFunc} type="datetime-local" required />
                                     </div>
                                     <p className="desc">Token to sale:</p>
                                     <div className="input-group">
