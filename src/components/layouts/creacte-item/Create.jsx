@@ -29,14 +29,11 @@ const Create = () => {
         // setAddress(accounts[0]);
         if (typeof window.ethereum !== 'undefined') {
             setStatus("Wait...")
-            console.log("Check")
 
             try {
-                console.log("check1")
                 const data = "0xcEb2780C55D54C86F99f7505c04312B7448d5FBa";
                 const providers = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = providers.getSigner();
-                console.log("check2")
                 const contract = new ethers.Contract(data, Abi, signer);
 
                 const sendTX = await contract.createPresale(
@@ -56,14 +53,15 @@ const Create = () => {
                     datelock
 
                 )
-                await sendTX.wait()
+                // await sendTX.wait()
                 console.log(sendTX)
                 const check = sendTX.toString()
                 console.log(check)
-                setStatus("waiting for Teams")
+                setStatus("successfully sent transaction")
             }
             catch (error) {
                 console.log(error)
+                setStatus("Somethigng went wrong.")
             }
         }
     }
