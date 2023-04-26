@@ -1,8 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import img from '../../../assets/images/background/img-create-item.jpg'
-
+import { ethers } from 'ethers';
+import Abi from "../../../contracts/AirdropAbi.json"
 
 const Create = () => {
+    const [tokenAddress , setTokenAddress] = useState("");
+    const [tokenAmount , setTokenAmount] = useState();
+    const [walletAddressList , setWalletAddressList] = useState();
+    const [Status , setStatus] =useState("")
+    
+    async function GetAirDrop(event) {
+        event.preventDefault();
+        if (typeof window.ethereum !== 'undefined') {
+            setStatus("Wait...")
+
+            try {
+                const data = "0x53332Da74003640B6e93D80dCCe9Ab2ABB3c745b";
+                const providers = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = providers.getSigner();
+                const contract = new ethers.Contract(data, Abi, signer);
+
+                const sendTX = await contract.createAirdrop(tokenAddress, [walletAddressList], tokenAmount)
+                // await sendTX.wait()
+                console.log(sendTX)
+                const check = sendTX.toString()
+                console.log(check)
+                setStatus("Succesfully sent transaction")
+            }
+            catch (error) {
+                console.log(error)
+                setStatus("Somethigng went wrong.")
+            }
+        }
+    }
+
+    const TokenAddressFunc = (e)=>{
+        const data = e.target.value;
+        setTokenAddress(data);
+        console.log (data);
+    }
+    const tokenAmountFunc = (e) => {
+        const data = e.target.value;
+        setTokenAmount(data);
+        console.log (data);
+    }
+    const walletAddressListFunc = (e) => {
+        const data = e.target.value;
+        setWalletAddressList(data);
+        console.log (data);
+    }
+
 return (
     <section className="tf-section create-item pd-top-0 mg-t-40">
         <div className="container">
@@ -25,12 +72,12 @@ return (
                                     
                                 </div> */}
                                 <div className="input-group">
-                                    <input name="number" type="text" placeholder="Token Address" required />
+                                    <input value={tokenAddress} onChange={TokenAddressFunc} name="number" type="text" placeholder="Token Address" required />
                                     {/* <input name="number" type="text" placeholder="Rate (1 BNB = ??? tokens)"
                                         required /> */}
                                 </div>
                                 <div className="input-group">
-                                    <input name="number" type="number" placeholder="Token Amount" required />
+                                    <input value={tokenAmount} onChange={tokenAmountFunc} name="number" type="number" placeholder="Token Amount" required />
                                     {/* <input name="number" type="text" placeholder="Hardcap" required /> */}
                                 </div>
                                 {/* <div className="input-group">
@@ -38,7 +85,7 @@ return (
                                     <input name="number" type="text" placeholder="Start date"
                                         required />
                                 </div> */}
-                                <textarea id="comment-message" name="message" tabIndex="4"
+                                <textarea value={walletAddressList} onChange={walletAddressListFunc} id="comment-message" name="message" tabIndex="4"
                                     placeholder="Wallet Address List" aria-required="true"></textarea>
                                 <div className="input-group style-2 ">
                                     {/* <div className="btn-check">
@@ -58,8 +105,9 @@ return (
                                         </label>
                                     </div> */}
                                 </div>
-                                <button name="submit" type="submit" id="submit"
+                                <button onClick={GetAirDrop} name="submit" id="submit"
                                     className="sc-button style letter style-2"><span>Send Airdrop</span> </button>
+                                    <p>{Status}</p>
                             </form>
                         </div>
                         {/* <div className="form-background">
