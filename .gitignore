@@ -27,7 +27,6 @@ liquidityLockup.sol.txt
 presale.sol.txt
 presale2.sol
 node_modules
-.env
 coverage
 coverage.json
 typechain
