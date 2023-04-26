@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import Abi from "../../../contracts/contractAbi.json"
+// import moment from "moment"
 
 // import img from '../../../assets/images/background/img-create-item.jpg';
 
@@ -22,15 +23,22 @@ const Create = () => {
     const [TokenToSale, setTokenToSale] = useState("");
     const [CheckWhiteListUsers, setCheckWhiteListUsers] = useState("");
 
-    async function getAllData() {
+    async function getAllData(event) {
+        event.preventDefault();
+        // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        // setAddress(accounts[0]);
         if (typeof window.ethereum !== 'undefined') {
             setStatus("Wait...")
+            console.log("Check")
 
             try {
+                console.log("check1")
                 const data = "0xcEb2780C55D54C86F99f7505c04312B7448d5FBa";
                 const providers = new ethers.providers.Web3Provider(window.ethereum);
                 const signer = providers.getSigner();
+                console.log("check2")
                 const contract = new ethers.Contract(data, Abi, signer);
+
                 const sendTX = await contract.createPresale(
                     Address, //"0xcEb2780C55D54C86F99f7505c04312B7448d5FBa",   
                     presaleRate,
@@ -52,7 +60,7 @@ const Create = () => {
                 console.log(sendTX)
                 const check = sendTX.toString()
                 console.log(check)
-                // setStatus(check)
+                setStatus("waiting for Teams")
             }
             catch (error) {
                 console.log(error)
@@ -62,21 +70,21 @@ const Create = () => {
 
 
     const AddressFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setAddress(data);
         console.log(data)
 
     }
     const persaleRateFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setPresaleRate(data);
         console.log(data)
 
     }
     const listingRateFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setListingRate(data);
         console.log(data)
@@ -84,14 +92,14 @@ const Create = () => {
 
     }
     const softCapFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setSoftCap(data);
         console.log(data)
 
     }
     const hardCapFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setHardCap(data);
         console.log(data)
@@ -99,59 +107,62 @@ const Create = () => {
 
     }
     const minumumFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setMinumum(data);
         console.log(data)
     }
     const MaxumumFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setMaxumum(data);
         console.log(data)
     }
     const liquidityFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setLiquidity(data);
         console.log(data)
     }
     const datelockFunc = (e) => {
-        e.preventDefault()
-        const data = e.target.value
-        setDateLock(data);
-        console.log(data)
+
+        const data = e.target.value; // Get the value of the input field
+        const timestamp = Date.parse(data) / 1000; // Convert the input date to a Unix timestamp
+        const myBigNumber = ethers.BigNumber.from(timestamp); // Create a BigNumber object from the timestamp
+        setDateLock(myBigNumber); // Set the StartTime state variable to the BigNumber object
+        console.log(myBigNumber.toString()); // Log the string representation of the BigNumber object to the console
     }
     const WhitelistUsersFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value
         setWhitelistUsers(data);
         console.log(data)
     }
 
     const StartTimeFunc = (e) => {
-        e.preventDefault()
-        const data = e.target.value
-        setStartTime(data);
-        console.log(data)
+        const data = e.target.value; // Get the value of the input field
+        const timestamp = Date.parse(data) / 1000; // Convert the input date to a Unix timestamp
+        const myBigNumber = ethers.BigNumber.from(timestamp); // Create a BigNumber object from the timestamp
+        setStartTime(myBigNumber); // Set the StartTime state variable to the BigNumber object
+        console.log(myBigNumber.toString()); // Log the string representation of the BigNumber object to the console
     }
     const EndTimeFunc = (e) => {
-        e.preventDefault()
-        const data = e.target.value
-        setEndTime(data);
-        console.log(data)
+        const data = e.target.value; // Get the value of the input field
+        const timestamp = Date.parse(data) / 1000; // Convert the input date to a Unix timestamp
+        const myBigNumber = ethers.BigNumber.from(timestamp); // Create a BigNumber object from the timestamp
+        setEndTime(myBigNumber); // Set the StartTime state variable to the BigNumber object
+        console.log(myBigNumber.toString());
     }
     const TokenToSaleFunc = (e) => {
-        e.preventDefault()
+
         const data = e.target.value;
         setTokenToSale(data);
         console.log(data)
     }
-     const CheckWhiteList = (event) => {
+    const CheckWhiteList = (event) => {
         setCheckWhiteListUsers(event.target.value);
         console.log(event.target.checked);
-      }; 
-
+    }
 
 
     return (
@@ -237,16 +248,17 @@ const Create = () => {
                                     <p className="desc"> .</p>
                                     <p className="desc">Start Time:</p>
                                     <div className="input-group">
-                                        <input value={StartTime} onChange={StartTimeFunc} name="name" type="datetime-local" placeholder="Liquidity % for PancakeSwap" required />
+                                        <input value={StartTime} onChange={StartTimeFunc} type="date" required />
                                     </div>
                                     <p className="desc">End Time:</p>
                                     <div className="input-group">
-                                        <input value={EndTime} onChange={EndTimeFunc} name="name" type="datetime-local" placeholder="Liquidity % for PancakeSwap" required />
+                                        <input value={EndTime} onChange={EndTimeFunc} type="date" required />
                                     </div>
                                     <p className="desc">Token to sale:</p>
                                     <div className="input-group">
-                                        <input value={TokenToSale} onChange={TokenToSaleFunc} name="name" type="number" placeholder="Enter Tokens Numbers" required />
+                                        <input value={TokenToSale} onChange={TokenToSaleFunc} type="number" required />
                                     </div>
+
                                     {/* //above data use in blockchain   */}
                                     <p className="desc"> .</p>
                                     <h4 className="desc">⫸ Project Details</h4>
