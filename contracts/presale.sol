@@ -27,8 +27,16 @@ contract PresaleContract {
     mapping(address => mapping (address => bool)) whitelistedUsers;
     mapping(address => mapping(address=>uint)) contributions;
     mapping(address => Presale) private presales;
-
     mapping(address => address[]) private tokenOwner;
+
+    event PresaleCreated(
+        uint256 indexed _tokenAddress,
+        uint256 _totalTokens,
+        uint256 _startTime,
+        uint256 _endTime,
+        uint256 _softcap,
+        uint256 _hardcap
+    );
 
     function createPresale(
         address _tokenAddress,
