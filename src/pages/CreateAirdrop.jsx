@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Header from '../components/header/Header';
-import dataHotCollection2 from '../assets/fake-data/dataHotCollection2';
-import TopSeller from '../components/layouts/creacte-item/TopSeller';
+// import dataHotCollection2 from '../assets/fake-data/dataHotCollection2';
+// import TopSeller from '../components/layouts/creacte-item/TopSeller';
 import CreateAirdrop from '../components/layouts/creacte-item/CreateAirdropForm';
 import { Newsletters } from '../components/layouts/home/Newsletters';
 import Footer from '../components/footer/FooterStyle2';
