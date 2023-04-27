@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npx hardhat run .\scripts\deploy --network [specify network] For contract deployemnt`
+
+Writer your wallet memonics and bsscanApikey in  .\secrets.json before running the command
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -69,10 +73,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
-## Blockchain
-###  Contract Deployemnt
-
-Writer your wallet memonics and bsscanApikey in  .\secrets.json and run 
-
-`npx hardhat run .\scripts\deploy --network [specify network]`
