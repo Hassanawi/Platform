@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
-import Abi from "../../../contracts/contractAbi.json"
 import moment from "moment"
+import Abi from "../../../contracts/contractAbi.json";
 
 // import img from '../../../assets/images/background/img-create-item.jpg';
 
@@ -37,7 +37,7 @@ const Create = () => {
                 const contract = new ethers.Contract(data, Abi, signer);
 
                 const sendTX = await contract.createPresale(
-                    Address, //"0xcEb2780C55D54C86F99f7505c04312B7448d5FBa",   
+                    Address,   
                     presaleRate,
                     listingRate,
                     SoftCap,
@@ -60,8 +60,14 @@ const Create = () => {
                 setStatus("successfully sent transaction")
             }
             catch (error) {
-                console.log(error)
-                setStatus("Somethigng went wrong.")
+                if(Address === '' ) {
+                    setStatus("Please fill all the fields")
+                }
+                
+                else{
+                    console.log(error)
+                    setStatus(error.error.message)
+                }
             }
         }
     }
@@ -196,7 +202,7 @@ const Create = () => {
                                     <span className="icon"><i className="far fa-cloud-upload"></i></span>
                                 </label> */}
                                     <div className="input-group">
-                                        <input value={Address} onChange={AddressFunc} name="Address" type="text" placeholder="Contract Address" required />
+                                        <input value={Address} onChange={AddressFunc} name="text" type="text" placeholder="Contract Address" required />
 
                                     </div>
                                     <p className="desc"> .</p>

@@ -30,6 +30,8 @@ function PreSale() {
     </section>
     {/* <TopSeller data={dataHotCollection2} /> */}
     <h1>working continue in morning</h1>
+
+    
     <Newsletters />
     <Footer />
   </div>;
