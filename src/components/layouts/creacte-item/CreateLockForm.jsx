@@ -1,7 +1,8 @@
 import React from 'react';
-import img from '../../../assets/images/background/img-create-item.jpg'
+// import img from '../../../assets/images/background/img-create-item.jpg'
 
 const Create = () => {
+    // const
 return (
     <section className="tf-section create-item pd-top-0 mg-t-40">
         <div className="container">
