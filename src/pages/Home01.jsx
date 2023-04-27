@@ -2,16 +2,16 @@ import React from 'react';
 import Header from '../components/header/Header';
 import Slider01 from '../components/slider/Slider01';
 import dataSlider from '../assets/fake-data/dataSlider';
-import LiveAution from '../components/layouts/home/LiveAution';
-import dataLiveAution from '../assets/fake-data/dataLiveAution'
-import LatestCollections from '../components/layouts/home/LatestCollections';
-import dataCollections from '../assets/fake-data/dataCollections'
-import BestSeller from '../components/layouts/home/BestSeller';
-import dataBestSeller from '../assets/fake-data/dataBestSeller'
-import TrendingCollections from '../components/layouts/home/TrendingCollections';
-import dataTrendingCollections from '../assets/fake-data/dataTrendingCollections'
-import Category from '../components/layouts/home/Category';
-import dataCategory from '../assets/fake-data/dataCategory'
+// import LiveAution from '../components/layouts/home/LiveAution';
+// import dataLiveAution from '../assets/fake-data/dataLiveAution'
+// import LatestCollections from '../components/layouts/home/LatestCollections';
+// import dataCollections from '../assets/fake-data/dataCollections'
+// import BestSeller from '../components/layouts/home/BestSeller';
+// import dataBestSeller from '../assets/fake-data/dataBestSeller'
+// import TrendingCollections from '../components/layouts/home/TrendingCollections';
+// import dataTrendingCollections from '../assets/fake-data/dataTrendingCollections'
+// import Category from '../components/layouts/home/Category';
+// import dataCategory from '../assets/fake-data/dataCategory'
 import Footer from '../components/footer/FooterStyle2';
 import { Newsletters } from '../components/layouts/home/Newsletters';
 import Create from '../components/layouts/home02/Create';

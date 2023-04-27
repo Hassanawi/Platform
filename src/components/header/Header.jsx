@@ -1,5 +1,5 @@
 import React , { useRef , useState , useEffect } from 'react';
-import TopBar from './TopBar';
+// import TopBar from './TopBar';
 import { Link , useLocation } from 'react-router-dom'
 import logo from '../../assets/images/logo/logo_dark.png'
 import logo2x from '../../assets/images/logo/logo_dark@2x.png'
@@ -20,7 +20,7 @@ const Header = () => {
             window.removeEventListener('scroll', isSticky);
         };
     });
-    const [walletAddress, setWalletAddress] = useState("")
+    // const [walletAddress, setWalletAddress] = useState("")
 
     const [barrer, setBarrer] = useState("")
     const [space, setSpacer] = useState("")
@@ -31,7 +31,7 @@ const Header = () => {
     const [errorMessage, setErrorMessage] = useState(null);
     const[defaultAccount, setDefaultAccount] = useState('Connect MetaMask');
     const[userBalance, setUserBalance] = useState(null);
-    const[ConnButtonText, setConnButtonText] = useState('Connect MetaMask');
+    // const[ConnButtonText, setConnButtonText] = useState('Connect MetaMask');
     useEffect(() =>{
         checkConnectedWallets();
     });
