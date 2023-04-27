@@ -75,4 +75,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Writer your wallet memonics and bsscanApikey in  .\secrets.json and run 
 
-'npx hardhat run .\scripts\deploy --network [specify network]'
+`npx hardhat run .\scripts\deploy --network [specify network]`
