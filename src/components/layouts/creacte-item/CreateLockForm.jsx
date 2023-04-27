@@ -1,8 +1,73 @@
-import React from 'react';
+import React,{useState} from 'react';
+import moment from 'moment';
+import {ethers} from 'ethers';
 // import img from '../../../assets/images/background/img-create-item.jpg'
+//Import Abi from '../../
+import Abi from "../../../contracts/LockContract.json"
 
 const Create = () => {
-    // const
+    const [TokenAddress , setTokenAddress] = useState("");
+    const [TokenAmount , setTokenAmount] = useState("");
+    const [UnlockTime , setUnlockTime] = useState("");
+    const [Status , setStatus] = useState("");
+
+
+    async function GetLockformData(event) {
+        event.preventDefault();
+        // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        // setAddress(accounts[0]);
+        if (typeof window.ethereum !== 'undefined') {
+            setStatus("Wait...")
+
+            try {
+                const data = "0x1b66E0deab2444B78471010F94612E0422E875b7";
+                const providers = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = providers.getSigner();
+                const contract = new ethers.Contract(data, Abi, signer);
+
+                const sendTX = await contract.lockTokens(
+                    UnlockTime,
+                    TokenAmount,
+                    TokenAddress
+                )
+                // await sendTX.wait()
+                console.log(sendTX)
+                const check = sendTX.toString()
+                console.log(check)
+                setStatus("successfully sent transaction")
+            }
+            catch (error) {
+               
+                    console.log(error)
+                    setStatus("Error")
+                }
+            }
+        }
+
+
+    function TokenAddressfunc(e){
+        console.log(e.target.value)
+        setTokenAddress(e.target.value);
+    }
+
+    function TokenAmountfunc(e){
+        console.log(e.target.value)
+        setTokenAmount(e.target.value);
+    }
+    function UnlockTimefunc(e){
+        const dateTimeValue = e.target.value;
+        console.log("Selected date and time:", dateTimeValue);
+        // parse the selected date and time string into a moment object using format 'YYYY-MM-DDTHH:mm'
+        const selectedDateTime = moment(dateTimeValue, "YYYY-MM-DDTHH:mm");
+        console.log("Selected date and time as moment object:", selectedDateTime);
+        // convert the moment object to a unix timestamp in seconds
+        const timestamp = selectedDateTime.unix();
+        console.log("Unix timestamp:", timestamp);
+        setUnlockTime(timestamp);
+    }
+
+    
+
 return (
     <section className="tf-section create-item pd-top-0 mg-t-40">
         <div className="container">
@@ -25,17 +90,17 @@ return (
                                     
                                 </div> */}
                                 <div className="input-group">
-                                    <input name="number" type="text" placeholder="Token Address" required />
+                                    <input value={TokenAddress} onChange={TokenAddressfunc} name="number" type="text" placeholder="Token Address" required />
                                     {/* <input name="number" type="text" placeholder="Rate (1 BNB = ??? tokens)"
                                         required /> */}
                                 </div>
                                 <div className="input-group">
-                                    <input name="number" type="number" placeholder="Token Amount" required />
+                                    <input value={TokenAmount} onChange={TokenAmountfunc} name="number" type="number" placeholder="Token Amount" required />
                                     {/* <input name="number" type="text" placeholder="Hardcap" required /> */}
                                 </div>
                                 <h6 className="desc">Unlock Time:</h6>
                                 <div className="input-group">
-                                    <input name="name" type="datetime-local" placeholder="Lock Until (time)" required />
+                                    <input onChange={UnlockTimefunc} name="name" type="datetime-local" placeholder="Lock Until (time)" required />
                                 </div>
                                 {/* <div className="input-group">
                                     <input name="name" type="text" placeholder="Liquidity %" required />
@@ -62,8 +127,9 @@ return (
                                         </label>
                                     </div> */}
                                 {/* </div> */}
-                                <button name="submit" type="submit" id="submit"
+                                <button onClick={GetLockformData} name="submit" type="submit" id="submit"
                                     className="sc-button style letter style-2"><span>Lock Liquidity</span> </button>
+                                    <p>{Status}</p>
                             </form>
                         </div>
                         {/* <div className="form-background">

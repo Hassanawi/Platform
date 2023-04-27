@@ -66,7 +66,11 @@ const Create = () => {
                 
                 else{
                     console.log(error)
+<<<<<<< HEAD
                     setStatus(error.message)
+=======
+                    setStatus("Error")
+>>>>>>> 6f8de9edc7df2fc8677fe5fc33e961ee7dc1fef8
                 }
             }
         }
