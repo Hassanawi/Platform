@@ -8,10 +8,10 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const AirDrop = await ethers.getContractFactory("ERC20Airdrop"); //Replace with name of your smart contract
-  const airDrop = await AirDrop.deploy();
+  const LiquidityLock = await ethers.getContractFactory("LiquidityLock"); //Replace with name of your smart contract
+  const liquidityLock = await LiquidityLock.deploy();
 
-  console.log("Token address:", airDrop.address);
+  console.log("Token address:", liquidityLock.address);
 }
 
 main()
