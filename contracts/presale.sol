@@ -25,7 +25,7 @@ contract PresaleContract {
 
     mapping(address => mapping(address => bool)) whitelistedUsers;
     mapping(address => mapping(address => uint)) contributions;
-    mapping(address => Presale) private presales;
+    mapping(address => Presale) public presales;
     mapping(address => address[]) private tokenOwner;
 
     event PresaleCreated(
@@ -116,6 +116,9 @@ contract PresaleContract {
             whitelistedUsers[_tokenAddress][_whitelistedUsers[i]] = true;
         }
     }
+
+
+
     //     function withdraw(address payable _presaleOwner, uint256 _presaleIndex) external {
     //     Presale storage presale = presales[_presaleOwner];
     //     require(block.timestamp > presale.endTime, "Presale has not ended");

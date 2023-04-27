@@ -12,7 +12,7 @@ async function main() {
   const PresaleContract = await ethers.getContractFactory("PresaleContract");
   const presaleContract = await PresaleContract.deploy();
 
-  const LiquidityLock = await ethers.getContractFactory("LiquidityLock"); 
+  // const LiquidityLock = await ethers.getContractFactory("LiquidityLock"); 
   const liquidityLock = await LiquidityLock.deploy();
 
   console.log("ERC20Airdrop address:", erc20Airdrop.address);
