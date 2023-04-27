@@ -66,7 +66,7 @@ const Create = () => {
                 
                 else{
                     console.log(error)
-                    setStatus(error.error.message)
+                    setStatus("Error")
                 }
             }
         }
