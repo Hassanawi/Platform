@@ -1,4 +1,3 @@
-const { hre } = require("hardhat");
 
 
 async function main() {
@@ -7,8 +6,7 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
-
-  const LiquidityLock = await ethers.getContractFactory("LiquidityLock"); //Replace with name of your smart contract
+  const LiquidityLock = await ethers.getContractFactory("LiquidityLock"); 
   const liquidityLock = await LiquidityLock.deploy();
 
   console.log("Token address:", liquidityLock.address);

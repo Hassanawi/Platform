@@ -13,8 +13,7 @@ contract LiquidityLock is ReentrancyGuard {
         uint256 endDate;            // date when tokens can be withdrawn
         uint256 amount;             // amount of tokens locked
         address managerAddress;     // address of the manager who locked the tokens
-    }
-    
+    } 
     uint256 public poolCount = 0;   // number of locked token pools
     mapping(address => LockInfo) public pools;    // mapping of token addresses to LockInfo structs
     
@@ -23,6 +22,7 @@ contract LiquidityLock is ReentrancyGuard {
         require(msg.sender == pools[_tokenAddress].managerAddress, "Only the manager can call this function");
         _;
     }
+
 
     // Lock ERC20 tokens until the specified end date
     function lockTokens(

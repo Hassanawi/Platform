@@ -1,5 +1,6 @@
 
 require("@nomiclabs/hardhat-etherscan");
+require("@nomicfoundation/hardhat-toolbox")
 // hardhat.config.js
 const { mnemonic, bscscanApiKey } = require('./secrets.json');
 
