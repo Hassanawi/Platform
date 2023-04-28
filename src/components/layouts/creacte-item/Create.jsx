@@ -16,12 +16,12 @@ const Create = () => {
     const [Maxumum, setMaxumum] = useState("");
     const [liquidity, setLiquidity] = useState("");
     const [datelock, setDateLock] = useState("");
-    const [WhitelistUsers, setWhitelistUsers] = useState("");
+    const [WhitelistUsers, setWhitelistUsers] = useState([]);
     const [StartTime, setStartTime] = useState("");
     const [EndTime, setEndTime] = useState("");
     const [Status, setStatus] = useState("");
     const [TokenToSale, setTokenToSale] = useState("");
-    const [CheckWhiteListUsers, setCheckWhiteListUsers] = useState([]);
+    const [CheckWhiteListUsers, setCheckWhiteListUsers] = useState(false);
 
     async function getAllData(event) {
         event.preventDefault();
@@ -146,7 +146,9 @@ const Create = () => {
     const WhitelistUsersFunc = (e) => {
 
         const data = e.target.value
-        setWhitelistUsers(data);
+        const dataSplit = data.split(",")
+        console.log(data.split(","))
+        setWhitelistUsers(dataSplit);
         console.log(data)
     }
 
@@ -259,7 +261,7 @@ const Create = () => {
                                         </label>
                                     </div> */}
                                     </div>
-                                    <textarea value={WhitelistUsers} onChange={WhitelistUsersFunc} id="comment-message" name="message" tabIndex="4"
+                                    <textarea value={WhitelistUsers} onChange={WhitelistUsersFunc} id="comment-message"  typeof='' tabIndex="4"
                                         placeholder="Whitelisted Wallet Address list" aria-required="true"></textarea>
 
                                     <p className="desc"> .</p>
