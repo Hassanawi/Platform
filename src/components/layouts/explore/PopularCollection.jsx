@@ -30,7 +30,22 @@ const PopularCollection = props => {
             console.log("Checking contract...");
             const sales = await contract.presales(tokenAddress);
             console.log("Sales:", sales);
+
+            const unixTimestamp = parseInt(sales.endTime, 16) / 1000; // Convert hexadecimal timestamp to Unix timestamp
+
+            const date = new Date(unixTimestamp * 1000); // Create a new Date object with the Unix timestamp value
+
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1; // Add 1 because getMonth() returns a zero-based index
+            const day = date.getDate();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+
+            const humanTime = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
             // setAddress(sales);
+            console.log(humanTime)
+            
           } catch (error) {
             console.log(error);
             // setAddress("Install Metamask");
