@@ -67,11 +67,7 @@ const Create = () => {
                 
                 else{
                     console.log(error)
-<<<<<<< HEAD
-                    setStatus("Error")
-=======
                     setStatus("Something went wrong")
->>>>>>> c1d861359a91887005d105874819d490bfac6512
                 }
             }
         }
