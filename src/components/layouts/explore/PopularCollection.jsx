@@ -1,6 +1,8 @@
 import React , {useState} from 'react';
 import { Link } from 'react-router-dom'
-import { Dropdown } from 'react-bootstrap';
+import { ethers } from 'ethers';
+import ContractABI from "../../../contracts/contractAbi.json"
+// import { Dropdown } from 'react-bootstrap';
 
 const PopularCollection = props => {
     const data = props.data;
@@ -9,11 +11,42 @@ const PopularCollection = props => {
     const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 4);
     }
+
+
+    const AddressFunc = async () => {
+        if (typeof window.ethereum !== "undefined") {
+          try {
+            const data = "0x009Dddd6E6c46F1E9557fADfe643f655CC6A4eFb";
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            await window.ethereum.request({ method: "eth_requestAccounts" }); // prompt user to connect to Metamask
+            const signer = provider.getSigner();
+            const signerAddress = await signer.getAddress();
+            console.log(signerAddress)
+            const contract = new ethers.Contract(data, ContractABI, signer);
+            console.log("Checking contract...");
+            const sales = await contract.presales(signerAddress);
+            console.log("Sales:", sales);
+            // setAddress(sales);
+          } catch (error) {
+            console.log(error);
+            // setAddress("Install Metamask");
+          }
+        }
+        else {
+          console.log("Metamask not detected");
+        }
+      };
+      
+
     // const [presaleStatus, setPresaleSatus] = userState('Upcoming')
   return (
+    <>
+    <button onClick={AddressFunc}></button>
     <section className="tf-section trendy-colection-page style-2">
         <div className="container">
             <div className="row">
+
+               
                 {/* <div className="col-md-12">
                     <div className="wg-drop-category seclect-box">
                         <Dropdown>
@@ -156,6 +189,7 @@ const PopularCollection = props => {
             </div>
         </div>
     </section>
+    </>
     );
 };
 

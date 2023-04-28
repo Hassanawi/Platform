@@ -35,8 +35,10 @@ function PreSale() {
         try {
             const data = "0x009Dddd6E6c46F1E9557fADfe643f655CC6A4eFb";
             const providers = new ethers.providers.Web3Provider(window.ethereum);
-            await window.ethereum.enable(); // prompt user to connect to Metamask
+            await window.ethereum.request({ method: "eth_requestAccounts" }); 
             const signer = providers.getSigner();
+            // const signerAddress = await signer.getAddress();
+            // console.log(signerAddress)
             const contract = new ethers.Contract(data, ContractABI, signer);
             console.log("Checking contract...");
             setAddress("Please wait...");
@@ -44,7 +46,7 @@ function PreSale() {
             console.log("Sales:", sales);
             setAddress(sales);
         } catch (error) {
-            console.error(error);
+            console.log(error);
             setAddress("Install Metamask");
         }
     };
