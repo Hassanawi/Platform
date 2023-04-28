@@ -1,5 +1,48 @@
 [
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_tokenAddress",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_totalTokens",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_startTime",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_endTime",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_softcap",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_hardcap",
+        "type": "uint256"
+      }
+    ],
+    "name": "PresaleCreated",
+    "type": "event"
+  },
+  {
     "inputs": [
       { "internalType": "address", "name": "_tokenAddress", "type": "address" },
       { "internalType": "uint256", "name": "_presalePrice", "type": "uint256" },
@@ -59,6 +102,52 @@
     "name": "getPresalesByOwner",
     "outputs": [
       { "internalType": "address[]", "name": "", "type": "address[]" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "presales",
+    "outputs": [
+      { "internalType": "address", "name": "owner", "type": "address" },
+      { "internalType": "uint256", "name": "presalePrice", "type": "uint256" },
+      { "internalType": "uint256", "name": "listingPrice", "type": "uint256" },
+      { "internalType": "uint256", "name": "softcap", "type": "uint256" },
+      { "internalType": "uint256", "name": "hardcap", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "minContribution",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxContribution",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "startTime", "type": "uint256" },
+      { "internalType": "uint256", "name": "endTime", "type": "uint256" },
+      { "internalType": "uint256", "name": "tokensToSell", "type": "uint256" },
+      {
+        "internalType": "uint8",
+        "name": "liquidityPercentage",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "liquidityUnlockTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "haveWhitelistedUsers",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalInvestment",
+        "type": "uint256"
+      }
     ],
     "stateMutability": "view",
     "type": "function"
