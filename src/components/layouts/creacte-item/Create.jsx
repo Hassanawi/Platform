@@ -31,8 +31,9 @@ const Create = () => {
             setStatus("Wait...")
 
             try {
-                const data = "0xcEb2780C55D54C86F99f7505c04312B7448d5FBa";
+                const data = "0x009Dddd6E6c46F1E9557fADfe643f655CC6A4eFb";
                 const providers = new ethers.providers.Web3Provider(window.ethereum);
+                await window.ethereum.enable();
                 const signer = providers.getSigner();
                 const contract = new ethers.Contract(data, Abi, signer);
 
@@ -66,7 +67,11 @@ const Create = () => {
                 
                 else{
                     console.log(error)
+<<<<<<< HEAD
                     setStatus("Error")
+=======
+                    setStatus("Something went wrong")
+>>>>>>> c1d861359a91887005d105874819d490bfac6512
                 }
             }
         }

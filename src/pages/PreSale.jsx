@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { ethers } from 'ethers';
 import Header from '../components/header/Header';
 import { Newsletters } from '../components/layouts/home/Newsletters';
 import Footer from '../components/footer/FooterStyle2';
+import ContractABI from '../contracts/contractAbi.json'
+
 
 function PreSale() {
+
+    const [Address , setAddress] =useState("")
+
+// create a async function 
+    // const AddressFunc = async () => {
+       
+    //     try {
+    //         const data ="0x009Dddd6E6c46F1E9557fADfe643f655CC6A4eFb"
+    //         const providers = new ethers.providers.Web3Provider(window.ethereum);
+    //         const signer = providers.getSigner();
+    //         const contract = new ethers.Contract(data, ContractABI, signer);
+    //         console.log("checking contract")
+    //         setAddress("Wait");
+    //         const Sales = await contract.getPresalesByOwner();
+    //         await Sales.wait();
+    //         console.log(Sales)
+    //         // setAddress(Sales);
+    //   }
+    //   catch {
+    //     setAddress("Install Metamask");
+    //   }
+    // }
+
+    const AddressFunc = async () => {
+        try {
+            const data = "0x009Dddd6E6c46F1E9557fADfe643f655CC6A4eFb";
+            const providers = new ethers.providers.Web3Provider(window.ethereum);
+            await window.ethereum.enable(); // prompt user to connect to Metamask
+            const signer = providers.getSigner();
+            const contract = new ethers.Contract(data, ContractABI, signer);
+            console.log("Checking contract...");
+            setAddress("Please wait...");
+            const sales = await contract.getPresalesByOwner();
+            console.log("Sales:", sales);
+            setAddress(sales);
+        } catch (error) {
+            console.error(error);
+            setAddress("Install Metamask");
+        }
+    };
+
+
   return (<>
     <div>
     <Header />
@@ -31,6 +76,9 @@ function PreSale() {
     {/* <TopSeller data={dataHotCollection2} /> */}
     <h1>working continue in morning</h1>
 
+
+    <button onClick={AddressFunc} >Click ME:</button>
+    <p>{Address}</p>
     
     <Newsletters />
     <Footer />
