@@ -81,7 +81,7 @@ function PreSale() {
 
 
     <button onClick={AddressFunc} >Click ME:</button>
-    {/* <p>{Address}</p> */}
+    <p>{Address}</p>
     
     <Newsletters />
     <Footer />
