@@ -6,10 +6,14 @@ import ContractABI from "../../../contracts/contractAbi.json"
 
 const PopularCollection = props => {
     const data = props.data;
-
+    const [tokenAddress , setTokenAddress] = useState("");
     const [visible , setVisible] = useState(12);
     const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 4);
+    }
+
+    function tokenAddressFunc(e){
+        setTokenAddress(e.target.value)
     }
 
 
@@ -20,11 +24,11 @@ const PopularCollection = props => {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             await window.ethereum.request({ method: "eth_requestAccounts" }); // prompt user to connect to Metamask
             const signer = provider.getSigner();
-            const signerAddress = await signer.getAddress();
-            console.log(signerAddress)
+            // const signerAddress = await signer.getAddress();
+            // console.log(signerAddress)
             const contract = new ethers.Contract(data, ContractABI, signer);
             console.log("Checking contract...");
-            const sales = await contract.presales(signerAddress);
+            const sales = await contract.presales(tokenAddress);
             console.log("Sales:", sales);
             // setAddress(sales);
           } catch (error) {
@@ -41,7 +45,8 @@ const PopularCollection = props => {
     // const [presaleStatus, setPresaleSatus] = userState('Upcoming')
   return (
     <>
-    <button onClick={AddressFunc}></button>
+    <input value={tokenAddress} onChange={tokenAddressFunc} type="text" placeholder='Enter token Address' />
+    <button onClick={AddressFunc}>Click Me</button>
     <section className="tf-section trendy-colection-page style-2">
         <div className="container">
             <div className="row">

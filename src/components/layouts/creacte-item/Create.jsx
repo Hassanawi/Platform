@@ -21,7 +21,7 @@ const Create = () => {
     const [EndTime, setEndTime] = useState("");
     const [Status, setStatus] = useState("");
     const [TokenToSale, setTokenToSale] = useState("");
-    const [CheckWhiteListUsers, setCheckWhiteListUsers] = useState("");
+    const [CheckWhiteListUsers, setCheckWhiteListUsers] = useState([]);
 
     async function getAllData(event) {
         event.preventDefault();
@@ -50,7 +50,7 @@ const Create = () => {
                     TokenToSale,
                     liquidity,
                     CheckWhiteListUsers,
-                    [WhitelistUsers],
+                    WhitelistUsers,
                     datelock
 
                 )
