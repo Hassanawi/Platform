@@ -22,6 +22,7 @@ const Create = () => {
             try {
                 const data = "0x1b66E0deab2444B78471010F94612E0422E875b7";
                 const providers = new ethers.providers.Web3Provider(window.ethereum);
+                await window.ethereum.enable();
                 const signer = providers.getSigner();
                 const contract = new ethers.Contract(data, Abi, signer);
 
