@@ -9,7 +9,7 @@ import ContractABI from '../contracts/contractAbi.json'
 
 function PreSale() {
 
-    const [Address , setAddress] =useState("")
+    const [Address , setAddress] =useState([])
 
 // create a async function 
     // const AddressFunc = async () => {
@@ -80,7 +80,17 @@ function PreSale() {
 
 
     <button onClick={AddressFunc} >Click ME:</button>
-    <p>{Address}</p>
+    {/* <p>{Address}</p> */}
+
+
+    <div>
+      <h1>List of Contracts</h1>
+      <ul>
+        {Address.map((contract) => (
+          <li key={contract.address}>{contract.address}</li>
+        ))}
+      </ul>
+    </div>
     
     <Newsletters />
     <Footer />
