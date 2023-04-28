@@ -43,8 +43,9 @@ function PreSale() {
             console.log("Checking contract...");
             setAddress("Please wait...");
             const sales = await contract.getPresalesByOwner();
-            console.log("Sales:", sales);
-            setAddress(sales);
+            console.log("Sales:", sales[0]);
+            console.log("Sales:", sales[1]);
+            setAddress(sales[0]);
         } catch (error) {
             console.log(error);
             setAddress("Install Metamask");
