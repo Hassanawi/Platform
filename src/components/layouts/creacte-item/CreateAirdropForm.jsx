@@ -48,8 +48,10 @@ const Create = () => {
     }
     const walletAddressListFunc = (e) => {
         const data = e.target.value;
-        setWalletAddressList(data);
-        console.log (data);
+        const dataSplit = data.split(",")
+        console.log(data.split(","))
+        setWalletAddressList(dataSplit);
+        console.log (dataSplit);
     }
 
 return (

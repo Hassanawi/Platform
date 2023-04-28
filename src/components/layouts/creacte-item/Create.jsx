@@ -149,7 +149,7 @@ const Create = () => {
         const dataSplit = data.split(",")
         console.log(data.split(","))
         setWhitelistUsers(dataSplit);
-        console.log(data)
+        console.log(dataSplit)
     }
 
     const StartTimeFunc = (e) => {
