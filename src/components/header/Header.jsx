@@ -28,7 +28,7 @@ const Header = () => {
 
 
     const [activeIndex, setActiveIndex] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
+    // const [errorMessage, setErrorMessage] = useState(null);
     const[defaultAccount, setDefaultAccount] = useState('Connect MetaMask');
     const[userBalance, setUserBalance] = useState(null);
     // const[ConnButtonText, setConnButtonText] = useState('Connect MetaMask');
@@ -136,7 +136,7 @@ const Header = () => {
                                     </Link>
                                 </div>
                             </div>
-                            {errorMessage}
+                            {/* {errorMessage} */}
                             {/* <form className="form-search">
                                 <input type="text" placeholder="Search here" />
                                 <button><i className="far fa-search"></i></button>
