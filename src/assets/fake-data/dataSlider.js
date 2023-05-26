@@ -1,5 +1,5 @@
 
-import img1 from '../images/slider/img-slider-1.png'
+// import img1 from '../images/slider/img-slider-1.png'
 
 const dataSlider = [
     {

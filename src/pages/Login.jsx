@@ -5,7 +5,7 @@ import Header from '../components/header/Header';
 import { Newsletters } from '../components/layouts/home/Newsletters';
 import Footer from '../components/footer/FooterStyle2';
 
-import img1 from '../assets/images/background/img-login.jpg'
+// import img1 from '../assets/images/background/img-login.jpg'
 
 const Login = () => {
   return <div>

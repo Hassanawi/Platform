@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Header from '../components/header/Header';
-import LatestCollection from '../components/layouts/explore/LatestCollection'
-import dataCollections from '../assets/fake-data/dataCollections'
+// import LatestCollection from '../components/layouts/explore/LatestCollection'
+// import dataCollections from '../assets/fake-data/dataCollections'
 import PopularCollection from '../components/layouts/explore/PopularCollection';
 import dataPopularCollection from '../assets/fake-data/dataPopularCollection';
 import { Newsletters } from '../components/layouts/home/Newsletters';

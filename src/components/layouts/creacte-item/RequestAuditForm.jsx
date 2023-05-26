@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../../../assets/images/background/img-create-item.jpg'
+// import img from '../../../assets/images/background/img-create-item.jpg'
 
 const Create = () => {
 return (

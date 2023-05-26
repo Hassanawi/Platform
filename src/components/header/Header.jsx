@@ -22,8 +22,8 @@ const Header = () => {
     });
     // const [walletAddress, setWalletAddress] = useState("")
 
-    const [barrer, setBarrer] = useState("")
-    const [space, setSpacer] = useState("")
+    // const [barrer, setBarrer] = useState("")
+    // const [space, setSpacer] = useState("")
     // const [walletAddress, setWalletAddress] = useState("")
 
 
@@ -38,7 +38,7 @@ const Header = () => {
     const connectWallet = async() =>{
         if(typeof window!="undefined" && typeof window.ethereum!="undefined"){
             // this means that metamask is installed//
-            const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
+            // const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
            
 
         }
@@ -49,8 +49,8 @@ const Header = () => {
                 const account = await window.ethereum.request({method: "eth_accounts"});
                 if(account.length>0){
                     setDefaultAccount((account[0]).substring(0,4)+"..."+(account[0]).substr(38));
-                    setBarrer("|");
-                    setSpacer(" ");
+                    // setBarrer("|");
+                    // setSpacer(" ");
                 }
                 
             }
@@ -86,18 +86,18 @@ const Header = () => {
 
 
 
-    const connectWalletHandler = () =>
-    {
-        if(window.ethereum){
-            window.ethereum.request({method: 'eth_requestAccounts'})
-            .then(result=>{
-                accountChangedHandler(result[0]);
-            })
-        }
-        else{
-            setErrorMessage("Please install metamask");
-        }
-    }
+    // const connectWalletHandler = () =>
+    // {
+    //     if(window.ethereum){
+    //         window.ethereum.request({method: 'eth_requestAccounts'})
+    //         .then(result=>{
+    //             accountChangedHandler(result[0]);
+    //         })
+    //     }
+    //     else{
+    //         setErrorMessage("Please install metamask");
+    //     }
+    // }
     
     const accountChangedHandler = (newAccount) =>
     {
@@ -136,6 +136,7 @@ const Header = () => {
                                     </Link>
                                 </div>
                             </div>
+                            {errorMessage}
                             {/* <form className="form-search">
                                 <input type="text" placeholder="Search here" />
                                 <button><i className="far fa-search"></i></button>

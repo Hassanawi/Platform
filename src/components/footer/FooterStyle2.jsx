@@ -1,8 +1,8 @@
 import React , { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-import logo from '../../assets/images/logo/logo_dark.png'
-import logo2x from '../../assets/images/logo/logo_dark@2x.png'
+// import logo from '../../assets/images/logo/logo_dark.png'
+// import logo2x from '../../assets/images/logo/logo_dark@2x.png'
 
 const FooterStyle2 = () => {
     const [dataSocial] = useState([
